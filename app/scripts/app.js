@@ -26,6 +26,8 @@ angular
         //$httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
         delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
+        $httpProvider.interceptors.push('authInterceptor');
+
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -42,7 +44,8 @@ angular
       })
       .when('/welcome', {
         templateUrl: 'views/welcome.html',
-        controller: 'WelcomeController'
+        controller: 'WelcomeController',
+        controllerAs: 'welcome'
       })
       .otherwise({
         redirectTo: '/'
