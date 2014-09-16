@@ -5,6 +5,7 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
@@ -13,6 +14,17 @@
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
+
+
+    <!--[if IE 9]>
+    <script src="scripts/xdomain.min.js"></script>
+    <script>
+        xdomain.slaves({
+            'http://3369c5c0.ngrok.com': '/web/IE9/proxy.html'
+        });
+    </script>
+    <![endif]-->
+
   </head>
   <body ng-app="gradusMatrixUiSpikeApp">
     <!--[if lt IE 7]>
@@ -23,7 +35,7 @@
     <div class="container">
       <div class="header">
         <ul class="nav nav-pills pull-right" ng-controller="MenuController as menu">
-          <li ng-class="{active: menu.isOnPage('/')}"><a ng-href="#">Home</a></li>
+          <li ng-class="{active: menu.isOnPage('/')}"><a ng-href="#/">Home</a></li>
           <li ng-hide="menu.isAuthorized()" ng-class="{active: menu.isOnPage('/login')}"><a ng-href="#/login">Login</a></li>
           <li ng-show="menu.isAuthorized()" ng-class="{active: menu.isOnPage('/welcome')}"><a ng-href="#/welcome">Welcome</a></li>
           <li ng-show="menu.isAuthorized()" ng-click="menu.doLogout()"><a>Logout</a></li>
@@ -83,14 +95,20 @@
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
+
+
         <script src="scripts/app.js"></script>
+        <script src="scripts/services/route.js"></script>
+        <script src="scripts/conf.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>
         <script src="scripts/controllers/login.js"></script>
         <script src="scripts/controllers/welcome.js"></script>
+
         <script src="scripts/services/session.js"></script>
         <script src="scripts/services/authInterceptor.js"></script>
         <script src="scripts/controllers/menu.js"></script>
+
         <!-- endbuild -->
 </body>
 </html>
